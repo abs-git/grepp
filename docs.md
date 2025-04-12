@@ -16,22 +16,22 @@ test set은 onnx 변환 후에 적용됩니다. <br>
 
 
 #### 학습 파이프라인
-학습 파이프라인은 multi-gpu 기반의 **분산 학습**이 가능하도록 설계하였습니다.
-0번 gpu (rank0) 에서 프로세스가 작업할 때, validation set에 대한 모델의 성능 평가와 grad-cam을 실행하도록 하였습니다.
-`train/utils/engine.py`
+학습 파이프라인은 multi-gpu 기반의 **분산 학습**이 가능하도록 설계하였습니다. <br>
+0번 gpu (rank0) 에서 프로세스가 작업할 때, validation set에 대한 모델의 성능 평가와 grad-cam을 실행하도록 하였습니다. <br>
+`train/utils/engine.py` <br>
 
 
 #### 하이퍼파라미터 할당
-하이퍼파라미터는 기본적으로 config 폴더 내에 yaml 형식으로 관리하였습니다. `config/base.yaml`
-이를 기반으로 가변적인 파라미터로는 learning rate, optimizer, scheduler, batch size 를 선정하였고,
-이들의 조합으로 **반자동화**를 하고자 하였습니다. `train/trainer.py`
-하이퍼파라미터 조합에 따라 새로운 학습으로 구분하여 결과를 달리 저장하였습니다. `outputs/`
+하이퍼파라미터는 기본적으로 config 폴더 내에 yaml 형식으로 관리하였습니다. `config/base.yaml` <br>
+이를 기반으로 가변적인 파라미터로는 learning rate, optimizer, scheduler, batch size 를 선정하였고, <br>
+이들의 조합으로 **반자동화**를 하고자 하였습니다. `train/trainer.py` <br>
+하이퍼파라미터 조합에 따라 새로운 학습으로 구분하여 결과를 달리 저장하였습니다. `outputs/` <br>
 
 
 #### 모델 설계
-기존의 모델은 3개의 convolution layer로 구성되어 5개의 클래스를 분류하는 모델입니다.
-이를 기반으로 3개의 클래스를 분류하기 위해 기존 모델을 base model로 입력받는 End2End 모델을 구현하였습니다.
-End2End 모델은 활성 함수와 head 부분을 추가하였습니다. `model/model.py`
+기존의 모델은 3개의 convolution layer로 구성되어 5개의 클래스를 분류하는 모델입니다. <br>
+이를 기반으로 3개의 클래스를 분류하기 위해 기존 모델을 base model로 입력받는 End2End 모델을 구현하였습니다. <br>
+End2End 모델은 활성 함수와 head 부분을 추가하였습니다. `model/model.py` <br>
 
 
 #### 모델 평가시 지표, 방법
@@ -50,9 +50,9 @@ End2End 모델은 활성 함수와 head 부분을 추가하였습니다. `model/
 ### 양자화
 
 - ONNX 변환
-모델 가속화를 위해 End2End 모델과 학습된 weights 파일을 기반으로 onnx 변환을 하였습니다.
-우선, 원본 모델을 fp32에 대한 onnx 모델 변환 후 int8 모델로 변환하여 검증하였습니다. `deploy/deploy-onnx.py`
-모델의 성능은 test set을 기반으로 정확도(accuracy)를 측정하였습니다. `deploy/test-onnx.py`
+모델 가속화를 위해 End2End 모델과 학습된 weights 파일을 기반으로 onnx 변환을 하였습니다. <br>
+우선, 원본 모델을 fp32에 대한 onnx 모델 변환 후 int8 모델로 변환하여 검증하였습니다. `deploy/deploy-onnx.py` <br>
+모델의 성능은 test set을 기반으로 정확도(accuracy)를 측정하였습니다. `deploy/test-onnx.py` <br>
 
 
 ### Insight
