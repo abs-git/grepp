@@ -4,9 +4,9 @@
 ### 각 단계별 문제점과 해결 방법
 
 ### 데이터 분할
-제공 받은 데이터 셋은 train set이며 apple(127), cherry(127), tomato(50)개 입니다.
-학습을 위해 각 클래스별로 validation set(10), test set(10) 을 분할하여 평가에 사용하였습니다.
-test set은 onnx 변환 후에 적용됩니다.
+제공 받은 데이터 셋은 train set이며 apple(127), cherry(127), tomato(50)개 입니다. <br>
+학습을 위해 각 클래스별로 validation set(10), test set(10) 을 분할하여 평가에 사용하였습니다. <br>
+test set은 onnx 변환 후에 적용됩니다. <br>
 
 | Class    | Total Images | Number of Train | Number of Validation | Number of Test |
 |----------|--------------|-----------------|----------------------|----------------|
