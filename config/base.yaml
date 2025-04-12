@@ -1,0 +1,22 @@
+data:
+  train: data/train
+  val: data/val
+  test: data/test
+default:
+  checkpoint: None
+  imgsz: [64,64]
+  batch_size: 4
+  channel: 3
+  optimizer: adam
+  scheduler: exponentiallr
+  lr: 0.6
+  perspective: 0.3
+  gamma: 0.95
+  focal_ratio: 0.3
+  epochs: 600
+  num_workers: 4
+  rgb: True
+  amp: False
+output:
+  root: outputs
+  interval: 100

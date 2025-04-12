@@ -1,0 +1,52 @@
+import matplotlib.pyplot as plt
+
+def save_history(train_history, val_history, save_dir):
+    epochs = range(1, len(train_history["loss"]) + 1)
+
+    fig, axs = plt.subplots(2, 2, figsize=(16, 12))
+
+    axs[0, 0].plot(epochs, train_history["loss"], label="Loss")
+    axs[0, 0].plot(epochs, train_history["precision"], label="Precision")
+    axs[0, 0].plot(epochs, train_history["recall"], label="Recall")
+    axs[0, 0].plot(epochs, train_history["f1"], label="F1 Score")
+    axs[0, 0].plot(epochs, train_history["miss_rate"], label="Miss Rate")
+    axs[0, 0].set_xlabel("Epoch")
+    axs[0, 0].set_ylabel("Metric Value")
+    axs[0, 0].set_title("Training Metrics Over Epochs")
+    axs[0, 0].legend()
+    axs[0, 0].grid(True)
+
+    axs[0, 1].plot(epochs, val_history["loss"], label="Loss")
+    axs[0, 1].plot(epochs, val_history["precision"], label="Precision")
+    axs[0, 1].plot(epochs, val_history["recall"], label="Recall")
+    axs[0, 1].plot(epochs, val_history["f1"], label="F1 Score")
+    axs[0, 1].plot(epochs, val_history["miss_rate"], label="Miss Rate")
+    axs[0, 1].set_xlabel("Epoch")
+    axs[0, 1].set_ylabel("Metric Value")
+    axs[0, 1].set_title("Validation Metrics Over Epochs")
+    axs[0, 1].legend()
+    axs[0, 1].grid(True)
+
+    axs[1, 0].plot(epochs, train_history["TP"], label="TP")
+    axs[1, 0].plot(epochs, train_history["FP"], label="FP")
+    axs[1, 0].plot(epochs, train_history["TN"], label="TN")
+    axs[1, 0].plot(epochs, train_history["FN"], label="FN")
+    axs[1, 0].set_xlabel("Epoch")
+    axs[1, 0].set_ylabel("Count")
+    axs[1, 0].set_title("Train Confusion Matrix Components Over Epochs")
+    axs[1, 0].legend()
+    axs[1, 0].grid(True)
+
+    axs[1, 1].plot(epochs, val_history["TP"], label="TP")
+    axs[1, 1].plot(epochs, val_history["FP"], label="FP")
+    axs[1, 1].plot(epochs, val_history["TN"], label="TN")
+    axs[1, 1].plot(epochs, val_history["FN"], label="FN")
+    axs[1, 1].set_xlabel("Epoch")
+    axs[1, 1].set_ylabel("Count")
+    axs[1, 1].set_title("Validation Confusion Matrix Components Over Epochs")
+    axs[1, 1].legend()
+    axs[1, 1].grid(True)
+
+    plt.tight_layout()
+    plt.savefig(f"{save_dir}/combined_training_metrics.png")
+    plt.close()
