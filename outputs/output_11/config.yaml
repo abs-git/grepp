@@ -1,0 +1,24 @@
+data:
+  test: data/test
+  train: data/train
+  val: data/val
+default:
+  amp: false
+  batch_size: 16
+  channel: 3
+  checkpoint: model/conv_net.pth
+  epochs: 600
+  focal_ratio: 0.3
+  gamma: 0.95
+  imgsz:
+  - 64
+  - 64
+  lr: 0.001
+  num_workers: 4
+  optimizer: sgd
+  perspective: 0.3
+  rgb: true
+  scheduler: exponentiallr
+output:
+  interval: 100
+  root: outputs
